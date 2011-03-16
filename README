@@ -1,0 +1,24 @@
+ActiveMQ Tomcat
+===============
+
+Add the following to conf/context.xml
+
+1) Add connection factory
+<!-- ActiveMQ ConnectionFactory -->    
+    <Resource name="jms/ConnectionFactory" auth="Container" type="org.apache.activemq.ActiveMQConnectionFactory"
+        description="JMS Connection Factory" factory="org.apache.activemq.jndi.JNDIReferenceFactory" 
+        brokerURL="tcp://localhost:61616?trace=true" brokerName="LocalActiveMQBroker"/>
+
+
+2) Add destination queue
+    <!-- ActiveMQ HibernateSearch queue -->    
+    <Resource name="queue/hibernatesearch" auth="Container" type="org.apache.activemq.command.ActiveMQQueue"
+        description="Hibernate search queue" factory="org.apache.activemq.jndi.JNDIReferenceFactory"
+        physicalName="HibernateSearchController"/>
+
+		
+3) Add the following jars to server/lib
+activemq-core-5.4.2.jar
+commons-logging-1.1.jar
+geronimo-j2ee-management_1.1_spec-1.0.1.jar
+geronimo-jms_1.1_spec-1.1.1.jar
